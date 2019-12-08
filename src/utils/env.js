@@ -1,7 +1,12 @@
 const path = require('path')
-const {readdirSync: readdir, readFileSync: readFile, writeFileSync: writeFile} = require('fs')
+const {
+  readdirSync: readdir,
+  readFileSync: readFile,
+  writeFileSync: writeFile,
+} = require('fs')
 
 let variablesPath
+let variablesText
 
 const findVariables = () => {
   if (!variablesPath) {
@@ -18,12 +23,22 @@ const findVariables = () => {
   return variablesPath
 }
 
-const getVariables = () => {
+const readVariables = (force = false) => {
+  if (!variablesText || force) {
+    if (findVariables()) {
+      variablesText = readFile(findVariables()).toString()
+    }
+  }
+
+  return variablesText || null
+}
+
+const getVariables = (force = false) => {
   if (!findVariables()) {
     return null
   }
 
-  const variables = readFile(findVariables()).toString()
+  const variables = readVariables(force)
   .split('\n')
   .filter(item => Boolean(item))
   .reduce((prev, curr) => {
@@ -42,11 +57,13 @@ const setVariables = variables => {
     return null
   }
 
-  const contents = Object.entries(variables)
+  const variablesText = Object.entries(variables)
   .map(([key, value]) => `${key}=${value}`)
   .join('\n')
 
-  writeFile(variablesPath, contents)
+  writeFile(variablesPath, variablesText)
+
+  return variablesText
 }
 
-module.exports = {getVariables, setVariables}
+module.exports = {getVariables, readVariables, setVariables}

@@ -1,32 +1,44 @@
 /* eslint no-cond-assign: "warn" */
 const {Command, flags} = require('@oclif/command')
 const {promisify} = require('util')
+const chalk = require('chalk')
 const exec = promisify(require('child_process').exec)
-const {env: {getVariables, setVariables}} = require('../utils')
+const {env: {getVariables, readVariables, setVariables}} = require('../utils')
 
 class ThemeEnvSyncCommand extends Command {
   async run() {
     const {flags} = this.parse(ThemeEnvSyncCommand)
     // const name = flags.listOnly || 'world'
 
-    const variables = getVariables()
-
-    if (!variables) {
+    let variablesText = readVariables()
+    if (!variablesText) {
       this.log("Couldn't find/read variables file")
+      return
+    }
+
+    this.log(chalk.bold.underline('variables (pre-write):'))
+    this.log(variablesText)
+
+    const variables = getVariables()
+    if (!variables) {
+      this.log("Couldn't parse variables file")
       return
     }
 
     const password = Object.entries(variables).find(([key]) => key.indexOf('PASSWD') !== -1)[1]
     const storeURL = Object.entries(variables).find(([key]) => key.indexOf('SHOP') !== -1)[1]
 
-    const output = await exec(`theme get --list -p=${password} -s=${storeURL}`)
+    const cmd = `theme get --list -p=${password} -s=${storeURL}`
+    this.log(chalk.bold(cmd))
+    const output = await exec(cmd)
     if (output.stderr) {
       this.error(output.stderr)
       return
     }
 
+    this.log(output.stdout)
+
     if (flags['list-only']) {
-      this.log(output.stdout)
       return
     }
 
@@ -36,7 +48,10 @@ class ThemeEnvSyncCommand extends Command {
     const stageMatch = output.stdout.match(/$\s*\[(\d+)\]\s+\[STAGING\]/m)
     variables.STAGING_THEMEID = stageMatch[1]
 
-    setVariables(variables)
+    variablesText = setVariables(variables)
+
+    this.log(chalk.bold.underline('variables (post-write):'))
+    this.log(variablesText)
   }
 }
 
