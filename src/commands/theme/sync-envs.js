@@ -3,11 +3,11 @@ const {Command, flags} = require('@oclif/command')
 const {promisify} = require('util')
 const chalk = require('chalk')
 const exec = promisify(require('child_process').exec)
-const {env: {getVariables, readVariables, setVariables}} = require('../utils')
+const {env: {getVariables, readVariables, setVariables}} = require('../../utils')
 
-class ThemeEnvSyncCommand extends Command {
+class SyncEnvsCommand extends Command {
   async run() {
-    const {flags} = this.parse(ThemeEnvSyncCommand)
+    const {flags} = this.parse(SyncEnvsCommand)
     // const name = flags.listOnly || 'world'
 
     let variablesText = readVariables()
@@ -55,14 +55,14 @@ class ThemeEnvSyncCommand extends Command {
   }
 }
 
-ThemeEnvSyncCommand.description = `theme-env-sync: getting/updating current project/repo variables
+SyncEnvsCommand.description = `theme:sync-envs: getting/updating current project/repo variables
 
 Grabs the current variables file, and makes it sync up with what the Shopify API currently has for the themes.
 
 Only doing PROD and STAGING syncing, currently; future plans to include .sk-shopify-rc.json/.yml file, which will manually control which is synced with what.
 `
 
-ThemeEnvSyncCommand.flags = {
+SyncEnvsCommand.flags = {
   'list-only': flags.boolean({
     char: 'l',
     description: 'just output current theme list from Shopify Theme API',
@@ -70,4 +70,4 @@ ThemeEnvSyncCommand.flags = {
   }),
 }
 
-module.exports = ThemeEnvSyncCommand
+module.exports = SyncEnvsCommand

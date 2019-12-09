@@ -30,7 +30,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`sk-shopify help [COMMAND]`](#sk-shopify-help-command)
-* [`sk-shopify theme-env-sync`](#sk-shopify-theme-env-sync)
+* [`sk-shopify theme:sync-envs`](#sk-shopify-themesync-envs)
 
 ## `sk-shopify help [COMMAND]`
 
@@ -49,13 +49,13 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1/src/commands/help.ts)_
 
-## `sk-shopify theme-env-sync`
+## `sk-shopify theme:sync-envs`
 
-theme-env-sync: getting/updating current project/repo variables
+theme:sync-envs: getting/updating current project/repo variables
 
 ```
 USAGE
-  $ sk-shopify theme-env-sync
+  $ sk-shopify theme:sync-envs
 
 OPTIONS
   -l, --list-only  just output current theme list from Shopify Theme API
@@ -67,7 +67,7 @@ DESCRIPTION
   manually control which is synced with what.
 ```
 
-_See code: [src/commands/theme-env-sync.js](https://github.com/SwiftkickWeb/sk-shopify-cli/blob/v0.0.0/src/commands/theme-env-sync.js)_
+_See code: [src/commands/theme/sync-envs.js](https://github.com/SwiftkickWeb/sk-shopify-cli/blob/v0.0.0/src/commands/theme/sync-envs.js)_
 <!-- commandsstop -->
 
 # Roadmap
