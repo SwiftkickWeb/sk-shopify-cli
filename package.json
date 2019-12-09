@@ -6,7 +6,7 @@
   "bin": {
     "sk-shopify": "./bin/run"
   },
-  "bugs": "https://github.com///issues",
+  "bugs": "https://github.com/SwiftkickWeb/sk-shopify-cli/issues",
   "dependencies": {
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.13.3",
@@ -28,7 +28,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com//",
+  "homepage": "https://github.com/SwiftkickWeb/sk-shopify-cli",
   "keywords": [
     "oclif"
   ],
@@ -41,7 +41,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "/",
+  "repository": "https://github.com/SwiftkickWeb/sk-shopify-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint .",
