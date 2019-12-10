@@ -20,7 +20,7 @@ $ npm install -g sk-shopify-cli
 $ sk-shopify COMMAND
 running command...
 $ sk-shopify (-v|--version|version)
-sk-shopify-cli/0.0.1 darwin-x64 node-v12.10.0
+sk-shopify-cli/0.0.2 darwin-x64 node-v12.10.0
 $ sk-shopify --help [COMMAND]
 USAGE
   $ sk-shopify COMMAND
@@ -67,7 +67,7 @@ DESCRIPTION
   manually control which is synced with what.
 ```
 
-_See code: [src/commands/theme/sync-envs.js](https://github.com/SwiftkickWeb/sk-shopify-cli/blob/v0.0.1/src/commands/theme/sync-envs.js)_
+_See code: [src/commands/theme/sync-envs.js](https://github.com/SwiftkickWeb/sk-shopify-cli/blob/v0.0.2/src/commands/theme/sync-envs.js)_
 <!-- commandsstop -->
 
 # Roadmap

@@ -17,7 +17,7 @@ class SyncEnvsCommand extends Command {
     }
 
     this.log(chalk.bold.underline('variables (pre-write):'))
-    this.log(variablesText)
+    this.log(`${variablesText.trim()}\n`)
 
     const variables = getVariables()
     if (!variables) {
@@ -36,7 +36,7 @@ class SyncEnvsCommand extends Command {
       return
     }
 
-    this.log(output.stdout)
+    this.log(`${output.stdout.trim()}\n`)
 
     if (flags['list-only']) {
       return
