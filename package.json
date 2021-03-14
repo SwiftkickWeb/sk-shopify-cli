@@ -1,8 +1,8 @@
 {
   "name": "sk-shopify-cli",
   "description": "CLI for SK Shopify projects.",
-  "version": "0.0.2",
-  "author": "Paul Bruno @_paulbruno",
+  "version": "0.2.0",
+  "author": "Paul Bruno @_paulbruno, John Hutchinson @johnhutch",
   "bin": {
     "sk-shopify": "./bin/run"
   },
