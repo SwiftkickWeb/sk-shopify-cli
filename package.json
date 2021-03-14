@@ -1,12 +1,12 @@
 {
-  "name": "sk-shopify-cli",
-  "description": "CLI for SK Shopify projects.",
-  "version": "0.2.0",
+  "name": "skw-shopify-cli",
+  "description": "CLI for SKW Shopify projects.",
+  "version": "1.0.0",
   "author": "Paul Bruno @_paulbruno, John Hutchinson @johnhutch",
   "bin": {
-    "sk-shopify": "./bin/run"
+    "skw-shopify": "./bin/run"
   },
-  "bugs": "https://github.com/SwiftkickWeb/sk-shopify-cli/issues",
+  "bugs": "https://github.com/SwiftkickWeb/skw-shopify-cli/issues",
   "dependencies": {
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.13.3",
@@ -28,7 +28,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/SwiftkickWeb/sk-shopify-cli",
+  "homepage": "https://github.com/SwiftkickWeb/skw-shopify-cli",
   "keywords": [
     "oclif"
   ],
@@ -36,12 +36,12 @@
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
-    "bin": "sk-shopify",
+    "bin": "skw-shopify",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/SwiftkickWeb/sk-shopify-cli",
+  "repository": "https://github.com/SwiftkickWeb/skw-shopify-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint .",
