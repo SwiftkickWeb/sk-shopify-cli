@@ -59,11 +59,12 @@ USAGE
 
 OPTIONS
   -l, --list-only  just output current theme list from Shopify Theme API
+  -p="yourname", --personal="yourname"  supply name being used for your personal theme
 
 DESCRIPTION
   Grabs the current variables file, and makes it sync up with what the Shopify API currently has for the themes.
 
-  Only doing PROD and STAGING syncing, currently; future plans to include .sk-shopify-rc.json/.yml file, which will 
+  Only doing PROD, STAGING, QA, and personal syncing, currently; future plans to include .sk-shopify-rc.json/.yml file, which will 
   manually control which is synced with what.
 ```
 

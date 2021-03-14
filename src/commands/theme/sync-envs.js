@@ -43,10 +43,35 @@ class SyncEnvsCommand extends Command {
     }
 
     const prodMatch = output.stdout.match(/$\s*\[(\d+)\]\[live\]/m)
-    variables.PROD_THEMEID = prodMatch[1]
+    if (prodMatch) {
+      variables.PROD_THEMEID = prodMatch[1]
+    } else {
+      this.log("Couldn't find live theme. Which... is very surprising.")
+    }
 
     const stageMatch = output.stdout.match(/$\s*\[(\d+)\]\s+\[STAGING\]/m)
-    variables.STAGING_THEMEID = stageMatch[1]
+    if (stageMatch) {
+      variables.STAGING_THEMEID = stageMatch[1]
+    } else {
+      this.log("Couldn't find [STAGING] theme.")
+    }
+
+    const qaMatch = output.stdout.match(/$\s*\[(\d+)\]\s+\[QA\]/m)
+    if (qaMatch) {
+      variables.QA_THEMEID = qaMatch[1]
+    } else {
+      this.log("Couldn't find [QA] theme.")
+    }
+
+    if (flags.personal) {
+      let personalRegExp = new RegExp('$\\s*\\[(\\d+)\\]\\s+\\[' + flags.personal + '\\]', 'm')
+      const personalMatch = output.stdout.match(personalRegExp)
+      if (personalMatch) {
+        variables.PERSONAL_THEMEID = personalMatch[1]
+      } else {
+        this.log("Couldn't find [" + flags.personal + '] theme.')
+      }
+    }
 
     variablesText = setVariables(variables)
 
@@ -67,6 +92,11 @@ SyncEnvsCommand.flags = {
     char: 'l',
     description: 'just output current theme list from Shopify Theme API',
     default: false,
+  }),
+  'personal': flags.string({
+    char: 'p',
+    description: 'search-string for personal theme',
+    default: '',
   }),
 }
 
